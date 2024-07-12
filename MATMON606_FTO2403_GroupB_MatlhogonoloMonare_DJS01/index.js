@@ -23,20 +23,27 @@ try {
   };
 
 
-const d2 = d + (vel*time) //calcultes new distance
-const rf = fbr*time //calculates remaining fuel
-const vel2 = calcNewVel(acc, vel, time) //calculates new velocity based on acceleration
+// Calculates new distance 
+  const newDistance =
+    givenParameters.initialDistance +
+    (givenParameters.initialVelocity * givenParameters.time) / 3600;
 
-// Pick up an error with how the function below is called and make it robust to such errors
-calcNewVel = (vel, acc, time) => { 
-  return vel + (acc*time)
+  // Calculates the remaining fuel
+  const remainingFuel =
+  givenParameters.Fuel -
+  givenParameters.fuelBurnRate * givenParameters.time;
+
+  // calculates new velocity based on acceleration
+  const newVelocity = calculateNewVelocity(givenParameters.acceleration);
+
+  // Console Log to show the new velocity, distance covered, and remaining fuel
+  console.log(`Corrected New Velocity: ${newVelocity} km/h`);
+  console.log(`Corrected New Distance: ${newDistance} km`);
+  console.log(`Corrected Remaining Fuel: ${remainingFuel} kg`);
+} catch (error) {
+  // Error console for any errors that occur
+  console.error("An error occurred:", error);
 }
-
-console.log(`Corrected New Velocity: ${vel2} km/h`);
-console.log(`Corrected New Distance: ${d2} km`);
-console.log(`Corrected Remaining Fuel: ${rf} kg`);
-
-
 
 
 
